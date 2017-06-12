@@ -15,7 +15,12 @@ class CreateAssignedsTable extends Migration
     {
         Schema::create('assigneds', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('employee_id')->unsigned();
+            $table->integer('ticket_id')->unsigned();
+              $table->timestamps();
+            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            $table->foreign('ticket_id')->references('id')->on('tickets')->onDelete('cascade');
+
         });
     }
 
