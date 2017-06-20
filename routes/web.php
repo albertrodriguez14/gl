@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('gestion', function()
+{
+  return View("layout.index");
+});
