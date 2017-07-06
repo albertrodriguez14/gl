@@ -13,15 +13,24 @@ class Assigned extends Model
 
  public function employee(){
 
-      return $this->hasMany("App\Employee","id");
+      return $this->belongsTo("App\Employee");
  }
 
-  public function Ticket(){
+  public function ticket(){
 
-      return $this->hasMany("App\Ticket","id");
+      return $this->belongsTo("App\Ticket");
   }
   public function sale(){
-    return $this->belongsTo("App\Sale","assigned_id");
+    return $this->hasMany("App\Sale");
 
   }
+ public function scopeAssigneds(){
+
+   return  $this->select('assigneds.id', 'employees.name_employee','tickets.ticket_number')
+                           ->join('employees','assigneds.employee_id','=','employees.id')
+                           ->join( 'tickets' , 'assigneds.ticket_id' ,'=' ,'tickets.id')
+                           ->get();
+
+ }
+
 }

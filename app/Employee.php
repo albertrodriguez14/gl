@@ -10,14 +10,14 @@ class Employee extends Model
     //
     protected $table = "employees";
      protected $primarykey ="id";
-    protected $fillable = ["employee_name"];
+    protected $fillable = ["name_employee"];
 
-    public function assigned(){
+    public function employee(){
 
-      return $this->belongsTo("App\Assigned","employee_id");
+      return $this->hasMany("App\Assigned");
     }
 
       public function sale(){
-           return $this->belongsTo("App/Sale","employee_id");
+           return $this->hasMany("App/Sale");
       }
 }

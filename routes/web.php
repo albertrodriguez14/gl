@@ -19,3 +19,9 @@ Route::get('gestion', function()
 {
   return View("layout.index");
 });
+
+Route::resource("empleados","EmployeeController",['only'=>['index','store',"delete"]]);
+Route::get('empleados/{id}/destroy','EmployeeController@destroy')->name('empleados.destroy');
+Route::resource("boletas","TicketController");
+Route::get('boletas/{id}/destroy','TicketController@destroy')->name('boletas.destroy');
+Route::resource('asignar','AssignedController'); 

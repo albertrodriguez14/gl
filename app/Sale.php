@@ -10,15 +10,15 @@ class Sale extends Model
     protected $primarykey =" id";
     protected $fillable = ["employee_id","assigned_id","sale_value","sale_date"];
 
-public function  employee(){
+public function employee(){
 
-    return $this->hasMany("App\Employee","id");
+    return $this->belongsTo("App\Employee");
 
 }
 
-public function assigned(){
+public function asignado(){
 
-   return $this->hasMany("App\Assigned","id");
+   return $this->belongsTo("App\Assigned");
 }
 
 

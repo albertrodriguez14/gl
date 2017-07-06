@@ -13,6 +13,6 @@ class Ticket extends Model
 
     public function assigned(){
 
-      return $this->belongsTo("App\Assigned","ticket_id");
+      return $this->belongsTo("App\Assigned");
     }
 }
