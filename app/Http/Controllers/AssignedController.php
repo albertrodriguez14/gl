@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Employee;
 use App\Ticket;
 use App\Assigned;
@@ -43,9 +44,44 @@ class AssignedController extends Controller
      */
     public function store(Request $request)
     {
-          Assigned::create($request->all());
-          Session::flash('save','ticket asignado');
-          return Redirect ('asignar');
+  // validamos  el envio de datos
+      $v =  $validator = Validator::make($request->all(), [
+            'ticket_id' => 'unique:assigneds',
+
+        ]);
+           //hacemos condicion para verificar que los datos enviados cumplan con las reglas
+           //en caso que no cumplan  se retorna a la misma panatalla con los mensajes usar dd($v) para ver los erroes
+        if ($v->fails())
+    {
+
+        return redirect()->back()->withErrors($v->errors());
+    }else{
+
+        Assigned::create($request->all());
+        Session::flash('save','ticket asignado');
+       return Redirect ('asignar');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+             /*
+         if($request->ticket_id == 5){
+           return "esta";
+         }else{
+           "no esta";
+         }
+      //   dd($request->ticket_id);
+
+        */
     }
 
     /**

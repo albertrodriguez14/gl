@@ -24,6 +24,7 @@ class Assigned extends Model
     return $this->hasMany("App\Sale");
 
   }
+  // scope para verificar la referencia y traer datos 
  public function scopeAssigneds(){
 
    return  $this->select('assigneds.id', 'employees.name_employee','tickets.ticket_number')
